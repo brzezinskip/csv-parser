@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <form action="index.html" method="post">
+    <form action="upload" method="post" enctype="multipart/form-data">
         <h1>SIMPLE XLSX CONVERTER</h1>
         <fieldset>
 
@@ -24,7 +24,7 @@
             </legend>
 
             <label for="job">First and last name column</label>
-            <select id="first_last_name" name="user_job">
+            <select id="first_last_name" name="name">
                 <optgroup class="name" label="First name and Last name">
                 </optgroup>
             </select>
@@ -51,7 +51,7 @@
 
             <div class="wrapper">
                 <div class="file-upload">
-                    <input class="input-file" type="file" />
+                    <input class="input-file" type="file" name="sheet"/>
                     <i class="fa fa-arrow-up"></i>
                 </div>
             </div>

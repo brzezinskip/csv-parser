@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "fast-csv": "^2.4.1",
-    "hapi": "^17.2.0",
+    "hapi": "^16.2.0",
+    "inert": "^4.2.1",
     "ramda": "^0.25.0"
   }
 }

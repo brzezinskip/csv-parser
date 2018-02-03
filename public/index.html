@@ -6,19 +6,94 @@
     <meta charset="utf-8">
 
     <title>WELCOME TO CSV PARSER</title>
-    <meta name="description" content="The HTML5 Herald">
-    <meta name="author" content="SitePoint">
+    <meta name="description" content="Simple csv parser">
+    <meta name="author" content="Piotr Brzezinski">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
-    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
-    <div id="root">
-        <section>
-            <h1>TEST</h1>
-        </section>
-    </div>
-    <script src="js/scripts.js"></script>
+    <form action="index.html" method="post">
+        <h1>SIMPLE XLSX CONVERTER</h1>
+        <fieldset>
+
+            <legend>
+                <span class="number">1</span>Setup columns
+            </legend>
+
+            <label for="job">First and last name column</label>
+            <select id="first_last_name" name="user_job">
+                <optgroup class="name" label="First name and Last name">
+                </optgroup>
+            </select>
+
+            <label for="job">Days column</label>
+            <select id="days" name="days">
+                <optgroup class="days" label="Days">
+                </optgroup>
+            </select>
+
+            <label for="job">Total hours column</label>
+            <select id="hours" name="hours">
+                <optgroup class="hours" label="Total hours">
+                </optgroup>
+            </select>
+
+        </fieldset>
+
+        <fieldset>
+
+            <legend>
+                <span class="number">2</span>Select file
+            </legend>
+
+            <div class="wrapper">
+                <div class="file-upload">
+                    <input class="input-file" type="file" />
+                    <i class="fa fa-arrow-up"></i>
+                </div>
+            </div>
+            <span class="input-text">No file selected..</span>
+
+        </fieldset>
+
+        <button type="submit">Start Upload</button>
+
+    </form>
 </body>
+<script>
+    const nameGroup = document.getElementsByClassName("name")[0];
+    const daysGroup = document.getElementsByClassName("days")[0];
+    const hoursGroup = document.getElementsByClassName("hours")[0];
+    const alphabet = new Array(26).fill(1).map((_, i) => String.fromCharCode(65 + i));
+
+    const generateChildren = (parents, cols) => {
+        const option = document.createElement("OPTION");
+        parents.forEach(({ group, value }) => {
+            const cols = alphabet.map((key) => {
+                option.textContent = key;
+                option.setAttribute("value", `${value}_${key}`);
+                return option.outerHTML;
+            });
+            group.innerHTML = cols.join('');
+        });
+    }
+    generateChildren(
+        [{ group: nameGroup, value: "name" }, { group: daysGroup, value: "days" }, { group: hoursGroup, value: "hours" }],
+        alphabet
+    );
+
+    const fileInput = document.getElementsByClassName('input-file')[0];
+    const fileInputText = document.getElementsByClassName('input-text')[0];
+    const fileInputTextContent = fileInputText.textContent;
+
+    fileInput.addEventListener('change', function(e) {
+        var value = e.target.value.length > 0 ? e.target.value : fileInputTextContent;
+        
+        fileInputText.textContent = value.replace('C:\\fakepath\\', '');
+    });
+</script>
 
 </html>

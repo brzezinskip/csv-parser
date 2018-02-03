@@ -10,8 +10,18 @@ server.register(require('inert'), (err) => {
 
     server.route({
         method: 'GET',
+        path: '/styles/{assetpath*}',
+        handler: {
+            directory: {
+                path: './public/'
+            }
+        }
+    })
+
+    server.route({
+        method: 'GET',
         path: '/hello',
-        handler:(req,reply) => reply.file('./public/index.html')
+        handler: (req, reply) => reply.file('./public/index.html')
     });
 });
 
@@ -20,4 +30,4 @@ server.route(routes.postFile);
 server
     .start()
     .then(() => console.log(`Server is running at ${server.info.uri}`))
-    .catch(err => { throw err } );
+    .catch(err => { throw err });
